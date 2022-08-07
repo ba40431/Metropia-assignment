@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  website:
+    build: .
+    image: ba40431/travel-project:2022-08-05
+    restart: always
+    env_file:
+      - ./.env
+    environment:
+      - PORT=3000

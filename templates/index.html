@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = 'UTF-8'></meta>
+		<meta name = 'viewport' content = 'width = device-width, initial-scale = 1, minimum-scale = 1' />
+		<title>Metropia Senior Backend Software Engineer (Python)</title>
+	</head>
+
+	<body>
+		<div class = 'login'>
+			<div>登入會員帳號</div>
+			<div>
+				<input type = 'email' id = 'login-email' placeholder = '輸入電子信箱'>
+			</div>
+			<div>
+				<input type = 'password' id = 'login-password' placeholder = '輸入密碼'>
+			</div>
+			<div>
+				<button onclick = checkLogin()>登入帳戶</button>
+			</div>
+			<div id = 'login-failed'></div>
+		</div>
+
+		<hr/>
+
+		<div class = 'register'>
+			<div>註冊會員帳號</div>
+			<div>
+				<input type = 'text' id = 'register-name' placeholder = '輸入姓名'>
+			</div>
+			<div>
+				<input type = 'email' id = 'register-email' placeholder = '輸入電子信箱'>
+			</div>
+			<div>
+				<input type = 'password' id = 'register-password' placeholder = '輸入密碼'>
+			</div>
+			<div>
+				<button onclick = checkRegister()>註冊新帳戶</button>
+			</div>
+			<div id = 'register-failed'></div>
+		</div>
+
+		<script  type = 'text/javascript' src = '../static/javascript/index.js'></script>
+    </body>
+</html>

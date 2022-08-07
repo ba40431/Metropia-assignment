@@ -1,0 +1,467 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "description": "API",
+      "version": "1.0.0",
+      "title": "Metropia-assignment API"
+    },
+    "servers": [
+      {
+        "url": "/"
+      }
+    ],
+    "tags": [
+      {
+        "name": "User",
+        "description": "User API"
+      },{
+        "name": "Url",
+        "description": "Url API"
+      }
+    ],
+    "paths": {
+      "/api/user": {
+        "get": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Get user's information.",
+          "responses": {
+            "200": {
+              "description": "已登入的使用者 & 短連結資料，null 表示未登入",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Users can register an account.",
+          "requestBody": {
+            "description": "Register Request Post Object",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRegisterRequest"
+                }
+              }
+            }
+          },
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "註冊成功",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Success"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "註冊失敗，重複的 Email 或其他原因",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "伺服器內部錯誤",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Users can sign in to the account.",
+          "requestBody": {
+            "description": "Sign In Request PATCH Object",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserSignInRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "登入成功",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SuccessSignIn"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "登入失敗，帳號或密碼錯誤或其他原因",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "伺服器內部錯誤",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Users can sign out to the account.",
+          "responses": {
+            "200": {
+              "description": "登出成功",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Success"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/url": {
+        "post": {
+          "tags": [
+            "Url"
+          ],
+          "summary": "Users can create their own short URLs after they sign in to their account.",
+          "requestBody": {
+            "description": "Short Url Request POST Object",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateUrlRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "產生短連結成功",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SuccessGenerateUrl"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "未登入系統，拒絕存取",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "伺服器內部錯誤",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "Url"
+          ],
+          "summary": "Users can edit their stored short URLs after they sign in to their account.",
+          "requestBody": {
+            "description": "Short Url Request PATCH Object",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModifyUrlRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "短連結修改成功",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Success"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "此短網址名稱已存在",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "未登入系統，拒絕存取",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "伺服器內部錯誤",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Url"
+          ],
+          "summary": "Users can delete their stored own short URLs after they sign in to their account",
+          "requestBody": {
+            "description": "Short Url Request DELETE Object",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteUrlRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "刪除短連結成功",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Success"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "未登入系統，拒絕存取",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "伺服器內部錯誤",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "User": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "example": 1
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Abby"
+                },
+                "email": {
+                  "type": "string",
+                  "format": "email",
+                  "example": "abby@abby"
+                },
+                "pathName": {
+                  "type": "string",
+                  "example": "1"
+                }
+              }
+            }
+          }
+        },
+        "UserRegisterRequest": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "Abby"
+            },
+            "email": {
+              "type": "string",
+              "format": "email",
+              "example": "abby@abby"
+            },
+            "password": {
+              "type": "string",
+              "example": "abby"
+            }
+          }
+        },
+        "UserSignInRequest": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "format": "email",
+              "example": "abby@abby"
+            },
+            "password": {
+              "type": "string",
+              "example": "abby"
+            }
+          }
+       },
+       "GenerateUrlRequest": {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "integer",
+              "example": 1
+            },
+            "longUrl": {
+              "type": "string",
+              "example": "http://3.86.209.182/user/1"
+            }
+          }
+       },
+       "ModifyUrlRequest": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "example": 1
+          },
+          "newPathName": {
+            "type": "string",
+            "example": "abby"
+          }
+        }
+       },
+       "DeleteUrlRequest": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+       },
+       "Success": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+       },
+       "SuccessSignIn": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "example": true
+          },
+          "userId": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+       },
+       "SuccessGenerateUrl": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "example": true
+          },
+          "pathName": {
+            "type": "string",
+            "example": "1"
+          }
+        }
+       },
+       "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "example": "自訂錯誤訊息"
+          }
+        }
+       }
+      }
+    }
+  }

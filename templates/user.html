@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+        <title>Metropia Senior Backend Software Engineer (Python)</title>
+        <link rel="stylesheet" type="text/css" href="../static/css/user.css">
+	</head>
+
+	<body>
+        <div>
+            <div>歡迎光臨<span id = 'user-name'></span></div>
+            <div>短網址: <a id = 'short-url'></a></div>
+            <button onclick = generateUrl()>產生短網址</button>
+            <button onclick = modifyBtn()>修改短網址</button>
+            <button onclick = deleteUrl()>刪除短網址</button>
+            <div id = 'modify-url'>
+                <div>http://3.86.209.182/short-url/<input type = 'text' id = 'path-name'></div>
+                <div><button onclick = modifyUrl()>修改</button></div>
+                <div id = 'failed-message'></div>
+            </div>
+        </div>
+        <hr/>
+        <button onclick = signOut()>登出</button>
+
+        <script  type = 'text/javascript' src = '../static/javascript/user.js'></script>
+    </body>
+</html>
