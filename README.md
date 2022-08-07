@@ -8,13 +8,13 @@
 docker build -t ba40431/travel-project:2022-08-05 .
 ```
 
-- PUSH Docker Image To Docker Hub.
+- Push Docker Image To Docker Hub.
 
 ```
 docker push ba40431/travel-project:2022-08-05
 ```
 
-- PULL Docker Image To EC2.
+- Pull Docker Image To EC2.
 
 ```
 sudo docker pull ba40431/travel-project:2022-08-05
