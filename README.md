@@ -36,9 +36,5 @@ Use the RDS MySQL database directly.
 ## Swagger document URL
 
 URL : http://54.221.150.42/swagger
-<<<<<<< HEAD
-![assignment.png](https://github.com/ba40431/Metropia-assignment/blob/main/static/assignment.png)
-=======
 
 ![assignment.png](https://raw.githubusercontent.com/ba40431/Metropia-assignment/main/static/assignment.png)
->>>>>>> 0bccdf7dccf926601e6c49ba4ab69c35f8d350ff
